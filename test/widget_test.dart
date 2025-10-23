@@ -7,13 +7,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:hotelapp/main.dart';
+import 'package:hotelapp/core/routing/app_route.dart';
+import 'package:hotelapp/core/routing/routes.dart';
+import 'package:hotelapp/hotel_app.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(
+      HotelApp(appRouter: AppRoute(), initialRoute: Routes.startScreen),
+    );
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

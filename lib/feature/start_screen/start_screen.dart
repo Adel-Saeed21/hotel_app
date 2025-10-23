@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hotelapp/core/helpers/extensions.dart';
 import 'package:hotelapp/core/helpers/spacing.dart';
+import 'package:hotelapp/core/routing/routes.dart';
 import 'package:hotelapp/core/themes/font_weight_helper.dart';
 import 'package:hotelapp/core/widgets/app_button.dart';
 
@@ -44,6 +46,7 @@ class StartScreen extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeightHelper.regular,
                         fontSize: 16.sp,
+                        // ignore: deprecated_member_use
                         color: Colors.white.withOpacity(0.9),
                       ),
                     ),
@@ -73,7 +76,7 @@ class StartScreen extends StatelessWidget {
                       buttonWidth: 280.w,
                       textStyle: TextStyle(color: Colors.grey, fontSize: 18.sp),
                       onPressed: () {
-                        // context.pushNamed(Routes.logInScreen);
+                        context.pushNamed(Routes.loginScreen);
                       },
                       backgroundColor: Colors.white,
                       radius: 20.r,

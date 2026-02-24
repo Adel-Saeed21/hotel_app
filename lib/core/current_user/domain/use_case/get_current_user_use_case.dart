@@ -1,0 +1,8 @@
+import 'package:hotelapp/core/current_user/domain/entities/user.dart';
+import 'package:hotelapp/core/current_user/domain/repo/current_user_repo.dart';
+
+class GetCurrentUserUseCase {
+  final CurrentUserRepository _repository;
+  GetCurrentUserUseCase(this._repository);
+  Future<User> call() async => await _repository.getCurrentUser();
+}

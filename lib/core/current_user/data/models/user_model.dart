@@ -26,6 +26,8 @@ class UserModel extends HiveObject {
   final String? loginToken;
   @HiveField(9)
   final String? profileImagePath;
+  @HiveField(10)
+  final String? id;
 
   UserModel({
     required this.firstName,
@@ -37,7 +39,7 @@ class UserModel extends HiveObject {
     required this.address,
     required this.role,
     this.loginToken,
-    this.profileImagePath,
+    this.profileImagePath, this.id,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

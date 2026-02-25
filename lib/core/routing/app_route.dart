@@ -9,6 +9,7 @@ import 'package:hotelapp/feature/auth/forget_password/presentation/forget_passwo
 import 'package:hotelapp/feature/auth/login/presentation/login_screen.dart';
 import 'package:hotelapp/feature/auth/register/presentation/logic/register_cubit.dart';
 import 'package:hotelapp/feature/auth/register/presentation/register_screen.dart';
+import 'package:hotelapp/feature/manger_dashboard/manager_dashboard_screen.dart';
 import 'package:hotelapp/feature/onboarding/onboarding_screen.dart';
 
 class AppRoute {
@@ -34,6 +35,9 @@ class AppRoute {
       case Routes.forgetPasswordScreen:
         forgetPasswordScreenDi();
         page = const ForgetPasswordScreen();
+        break;
+      case Routes.managerDashboardScreen:
+        page = const ManagerDashboardScreen();
         break;
       default:
         page = const Scaffold(body: Center(child: Text('Route not found')));

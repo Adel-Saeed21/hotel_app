@@ -13,5 +13,9 @@ class Assets {
   /// Assets for assetsImagesStartScreen
   /// assets/images/start_screen.png
   static const String assetsImagesStartScreen = "assets/images/start_screen.png";
+
+  /// Assets for assetsImagesUser
+  /// assets/images/user.png
+  static const String assetsImagesUser = "assets/images/user.png";
 }
 

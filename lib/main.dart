@@ -19,5 +19,5 @@ Future<void> _initializeApp() async {
 }
 
 Future<String> _determineInitialRoute() async {
-  return Routes.onboardingScreen;
+  return Routes.managerDashboardScreen;
 }

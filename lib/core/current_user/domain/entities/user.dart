@@ -8,6 +8,8 @@ class User {
   final String address;
   final String role;
   final String? loginToken;
+  final String? profileImagePath;
+  final String? id;
 
   User({
     required this.firstName,
@@ -18,7 +20,7 @@ class User {
     required this.city,
     required this.address,
     required this.role,
-    required this.loginToken,
+    required this.loginToken, this.profileImagePath, this.id,
   });
 
   User copyWith({
@@ -31,6 +33,8 @@ class User {
     String? address,
     String? role,
     String? loginToken,
+    String? profileImagePath,
+    String? id,
   }) {
     return User(
       firstName: firstName ?? this.firstName,
@@ -42,6 +46,8 @@ class User {
       address: address ?? this.address,
       role: role ?? this.role,
       loginToken: loginToken ?? this.loginToken,
+      profileImagePath: profileImagePath ?? this.profileImagePath,
+      id: id ?? this.id,
     );
   }
 

@@ -5,4 +5,5 @@ class ApiConst {
   static const String login = '/Account/Login';
   static const String forgetPassword = "/Account/forget-password";
   static const String resetPassword = "/Account/reset-password";
+  static const String getAllReservations = '/Reservation/get-all-reservations';
 }

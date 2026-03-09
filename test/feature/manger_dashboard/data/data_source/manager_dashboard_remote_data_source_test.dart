@@ -23,6 +23,7 @@ void main() {
   });
   group('Get all reservation', () {
     test('Get all reservation will be success', () async {
+      //arrange
       final reservation = List.generate(
         5,
         (index) => ReservationModel(
@@ -32,7 +33,7 @@ void main() {
           roomType: 'Deluxe',
           roomNumber: index + 1,
           checkInDate: DateTime.now().toString(),
-          checkOutDate: DateTime.now().add(Duration(days: 1)).toString(),
+          checkOutDate: DateTime.now().add(const Duration(days: 1)).toString(),
           state: States.arriving,
         ),
       );
@@ -44,9 +45,11 @@ void main() {
           requestOptions: RequestOptions(path: ApiConst.getAllReservations),
         ),
       );
+      //act
       final result = await managerDashboardRemoteDataSourceImpl
           .getGuestReservationData();
 
+      //assert
       expect(result, reservation);
     });
   });

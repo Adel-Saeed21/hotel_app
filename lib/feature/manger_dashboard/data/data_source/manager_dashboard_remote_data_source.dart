@@ -1,20 +1,27 @@
 import 'package:hotelapp/core/networking/api_const.dart';
+import 'package:hotelapp/core/networking/api_error_handler.dart';
+import 'package:hotelapp/core/networking/api_result.dart';
 import 'package:hotelapp/core/networking/network_service.dart';
 import 'package:hotelapp/feature/manger_dashboard/data/models/reservation_model.dart';
-
 abstract class ManagerDashboardRemoteDataSource {
-  Future<List<ReservationModel>> getGuestReservationData();
+  Future<ApiResult<List<ReservationModel>>> getGuestReservationData();
 }
 
 class ManagerDashboardRemoteDataSourceImpl
     implements ManagerDashboardRemoteDataSource {
   final NetworkService networkService;
   ManagerDashboardRemoteDataSourceImpl({required this.networkService});
+
   @override
-  Future<List<ReservationModel>> getGuestReservationData() async {
+Future<ApiResult<List<ReservationModel>>> getGuestReservationData() async {
+  try {
     final result = await networkService.get(ApiConst.getAllReservations);
-    return result.data
+    final data = result.data
         .map<ReservationModel>((e) => ReservationModel.fromJson(e))
         .toList();
+    return ApiResult.success(data);
+  } catch (e) {
+    return ApiResult.error(ApiErrorHandler.handle(e));
   }
+}
 }

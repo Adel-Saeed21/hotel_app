@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:hotelapp/feature/manger_dashboard/data/models/reservation_model.dart';
 
-class ManagerDashboardState {
+class ManagerDashboardState extends Equatable {
   final List<ReservationModel> reservations;
   final States filter;
   final bool isLoading;
@@ -26,11 +27,14 @@ class ManagerDashboardState {
     }
   }
 
-  int get checkInCount => 
+  @override
+  List<Object?> get props => [reservations, filter, isLoading, errorMessage];
+  
+  int get checkInCount =>
       reservations.where((e) => e.state == States.checkedIn).length;
-  int get checkOutCount => 
+  int get checkOutCount =>
       reservations.where((e) => e.state == States.checkedOut).length;
-  int get pendingCount => 
+  int get pendingCount =>
       reservations.where((e) => e.state == States.pending).length;
 
   ManagerDashboardState copyWith({

@@ -1,10 +1,36 @@
-# Midyaf  (Hotel Application)
+# Midyaf (Hotel Application)
 
-A new Flutter project.
+A Flutter hotel management application.
+
+## Features Completed
+
+### Authentication
+- Login screen
+- Register screen with terms and conditions
+- Forget password / reset password flow
+
+### Onboarding
+- Onboarding screen with navigation to login and register
+
+### Manager Dashboard
+- Dashboard header with user greeting
+- Dashboard statistics section
+- Room service promotional banner
+- Reservations list with filter options
+- Reservation cards display
+
+### Core Infrastructure
+- Clean architecture (data, domain, presentation layers)
+- Dependency injection with GetIt
+- State management with Bloc/Cubit
+- REST API networking with Dio
+- Local storage with Hive
+- Current user management
+- App routing with custom page transitions
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project requires Flutter 3.9.2 or higher.
 
 A few resources to get you started if this is your first Flutter project:
 

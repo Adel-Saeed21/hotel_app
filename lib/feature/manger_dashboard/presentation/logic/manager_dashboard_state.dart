@@ -23,19 +23,19 @@ class ManagerDashboardState extends Equatable {
       case States.pending:
         return reservations.where((e) => e.state == States.pending).toList();
       case States.arriving:
-        throw UnimplementedError();
+        return reservations.where((e) => e.state == States.arriving).toList();
     }
   }
 
-  @override
-  List<Object?> get props => [reservations, filter, isLoading, errorMessage];
-  
   int get checkInCount =>
       reservations.where((e) => e.state == States.checkedIn).length;
   int get checkOutCount =>
       reservations.where((e) => e.state == States.checkedOut).length;
   int get pendingCount =>
       reservations.where((e) => e.state == States.pending).length;
+
+  @override
+  List<Object?> get props => [reservations, filter, isLoading, errorMessage];
 
   ManagerDashboardState copyWith({
     List<ReservationModel>? reservations,
@@ -51,3 +51,4 @@ class ManagerDashboardState extends Equatable {
     );
   }
 }
+

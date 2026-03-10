@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotelapp/core/Di/forget_password_screen_di.dart';
 import 'package:hotelapp/core/Di/get_it.dart';
 import 'package:hotelapp/core/Di/login_screen_di.dart';
+import 'package:hotelapp/core/Di/manager_dashboard_screen_di.dart.dart';
 import 'package:hotelapp/core/Di/register_screen_di.dart';
 import 'package:hotelapp/core/routing/routes.dart';
 import 'package:hotelapp/feature/auth/forget_password/presentation/forget_password_screen.dart';
@@ -37,6 +38,7 @@ class AppRoute {
         page = const ForgetPasswordScreen();
         break;
       case Routes.managerDashboardScreen:
+        managerDashboardScreenDi();
         page = const ManagerDashboardScreen();
         break;
       default:

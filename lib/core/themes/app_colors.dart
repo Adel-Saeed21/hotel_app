@@ -11,6 +11,7 @@ class AppColors {
     165,
     167,
   );
+  static const Color backgroundWhite = Color(0xFFF5F7FA);
   static Color secondaryTextGrey = const Color(0xff7b8a9d);
   static Color textButtonWhite = const Color(0xffffffff);
 

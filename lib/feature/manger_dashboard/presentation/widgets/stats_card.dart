@@ -23,39 +23,38 @@ class StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 16.h),
       width: 105.w,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            // ignore: deprecated_member_use
-            color: AppColors.normalTextBlack.withOpacity(0.07),
-            blurRadius: 8.r,
-            offset: const Offset(0, 2),
+            color: iconColor.withOpacity(0.15),
+            blurRadius: 12.r,
+            offset: const Offset(0, 4),
           ),
         ],
-        color: AppColors.authBackgroundOffWhite,
-        borderRadius: BorderRadius.circular(14.r),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.r),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 36.w,
-            height: 36.h,
+            width: 40.w,
+            height: 40.h,
             decoration: BoxDecoration(
               color: iconBackgroundColor,
-              borderRadius: BorderRadius.circular(10.r),
+              borderRadius: BorderRadius.circular(12.r),
             ),
-            child: Icon(icon, size: 20.sp, color: iconColor),
+            child: Icon(icon, size: 22.sp, color: iconColor),
           ),
-          verticalSpace(10),
+          verticalSpace(12),
           Text(
             count,
             style: TextStyle(
               color: AppColors.normalTextBlack,
               fontWeight: FontWeightHelper.bold,
-              fontSize: 22.sp,
+              fontSize: 24.sp,
             ),
           ),
           verticalSpace(2),

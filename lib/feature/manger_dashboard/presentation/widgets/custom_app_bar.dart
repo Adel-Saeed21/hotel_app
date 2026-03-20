@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hotelapp/core/helpers/spacing.dart';
@@ -7,7 +6,7 @@ import 'package:hotelapp/core/themes/app_colors.dart';
 import 'package:hotelapp/core/themes/font_weight_helper.dart';
 import 'package:hotelapp/core/utils/app_assets.dart';
 
-class CustomAppBar extends StatelessWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     required this.role,
@@ -24,10 +23,12 @@ class CustomAppBar extends StatelessWidget {
   final String? profileImagePath;
 
   @override
+  Size get preferredSize => Size.fromHeight(70.h);
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // Profile Image
         ClipRRect(
           borderRadius: BorderRadius.circular(50),
           child: profileImagePath != null
@@ -45,10 +46,9 @@ class CustomAppBar extends StatelessWidget {
                 ),
         ),
         horizontalSpace(10),
-
-        // Role & Name
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               role,
@@ -67,10 +67,7 @@ class CustomAppBar extends StatelessWidget {
             ),
           ],
         ),
-
         const Spacer(),
-
-        // Notification Bell
         GestureDetector(
           onTap: onNotificationTap,
           child: Stack(

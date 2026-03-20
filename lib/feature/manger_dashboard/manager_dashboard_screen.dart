@@ -5,6 +5,7 @@ import 'package:hotelapp/core/Di/get_it.dart';
 import 'package:hotelapp/core/helpers/spacing.dart';
 import 'package:hotelapp/core/themes/app_colors.dart';
 import 'package:hotelapp/feature/manger_dashboard/presentation/logic/manager_dashboard_cubit.dart';
+import 'package:hotelapp/feature/manger_dashboard/presentation/widgets/custom_app_bar.dart';
 import 'package:hotelapp/feature/manger_dashboard/presentation/widgets/dahsboard_header.dart';
 import 'package:hotelapp/feature/manger_dashboard/presentation/widgets/dashboard_stats_section.dart';
 import 'package:hotelapp/feature/manger_dashboard/presentation/widgets/reservation_filter_row.dart';
@@ -21,6 +22,12 @@ class ManagerDashboardScreen extends StatelessWidget {
           getIt<ManagerDashboardCubit>()..loadDummyReservations(),
       child: Scaffold(
         backgroundColor: AppColors.backgroundWhite,
+        appBar: CustomAppBar(
+          role: 'MANAGER',
+          name: 'Sarah Wilson',
+          notificationCount: 1,
+          onNotificationTap: () {},
+        ),
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

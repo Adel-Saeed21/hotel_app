@@ -4,16 +4,14 @@ import 'package:hotelapp/core/networking/api_const.dart';
 import 'package:hotelapp/core/networking/network_service.dart';
 import 'package:hotelapp/feature/manger_dashboard/data/data_source/manager_dashboard_remote_data_source.dart';
 import 'package:hotelapp/feature/manger_dashboard/data/models/reservation_model.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'manager_dashboard_remote_data_source_test.mocks.dart';
+// ✅ بدل @GenerateMocks
+class MockNetworkService extends Mock implements NetworkService {}
 
-@GenerateMocks([NetworkService])
 void main() {
-  late final ManagerDashboardRemoteDataSourceImpl
-  managerDashboardRemoteDataSourceImpl;
-  late final NetworkService mockNetworkService;
+  late ManagerDashboardRemoteDataSourceImpl managerDashboardRemoteDataSourceImpl;
+  late NetworkService mockNetworkService;
 
   setUp(() {
     mockNetworkService = MockNetworkService();
@@ -21,9 +19,9 @@ void main() {
       networkService: mockNetworkService,
     );
   });
+
   group('Get all reservation', () {
     test('Get all reservation will be success', () async {
-      //arrange
       final reservation = List.generate(
         5,
         (index) => ReservationModel(
@@ -38,18 +36,16 @@ void main() {
         ),
       );
 
-      when(mockNetworkService.get(ApiConst.getAllReservations)).thenAnswer(
+      when(() => mockNetworkService.get(ApiConst.getAllReservations)) // ✅ () =>
+          .thenAnswer(
         (_) async => Response(
           data: reservation.map((e) => e.toJson()).toList(),
           statusCode: 200,
           requestOptions: RequestOptions(path: ApiConst.getAllReservations),
         ),
       );
-      //act
-      final result = await managerDashboardRemoteDataSourceImpl
-          .getGuestReservationData();
 
-      //assert
+      final result = await managerDashboardRemoteDataSourceImpl.getGuestReservationData();
       expect(result, reservation);
     });
   });

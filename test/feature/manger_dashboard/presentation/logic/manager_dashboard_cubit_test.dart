@@ -1,3 +1,4 @@
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hotelapp/core/networking/api_error_model.dart';
@@ -6,21 +7,13 @@ import 'package:hotelapp/feature/manger_dashboard/data/models/reservation_model.
 import 'package:hotelapp/feature/manger_dashboard/domain/user_cases/get_all_reservation_use_case.dart';
 import 'package:hotelapp/feature/manger_dashboard/presentation/logic/manager_dashboard_cubit.dart';
 import 'package:hotelapp/feature/manger_dashboard/presentation/logic/manager_dashboard_state.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'manager_dashboard_cubit_test.mocks.dart';
+class MockGetAllReservationUseCase extends Mock implements GetAllReservationUseCase {}
 
-@GenerateMocks([GetAllReservationUseCase])
 void main() {
-  late final GetAllReservationUseCase mockGetAllReservationUseCase;
-  late final ManagerDashboardCubit managerDashboardCubit;
-  setUp(() {
-    mockGetAllReservationUseCase = MockGetAllReservationUseCase();
-    managerDashboardCubit = ManagerDashboardCubit(
-      getAllReservationUseCase: mockGetAllReservationUseCase,
-    );
-  });
+  late GetAllReservationUseCase mockGetAllReservationUseCase;
+  late ManagerDashboardCubit managerDashboardCubit;
 
   final reservation = List.generate(
     5,
@@ -36,13 +29,20 @@ void main() {
     ),
   );
 
+  setUp(() {
+    mockGetAllReservationUseCase = MockGetAllReservationUseCase();
+    managerDashboardCubit = ManagerDashboardCubit(
+      getAllReservationUseCase: mockGetAllReservationUseCase,
+    );
+  });
+
+  tearDown(() => managerDashboardCubit.close());
+
   blocTest<ManagerDashboardCubit, ManagerDashboardState>(
     'emit loading then success',
     build: () {
-      when(
-        mockGetAllReservationUseCase(),
-      ).thenAnswer((_) async => ApiResult.success(reservation));
-
+      when(() => mockGetAllReservationUseCase()) 
+          .thenAnswer((_) async => ApiResult.success(reservation));
       return ManagerDashboardCubit(
         getAllReservationUseCase: mockGetAllReservationUseCase,
       );
@@ -57,7 +57,8 @@ void main() {
   blocTest<ManagerDashboardCubit, ManagerDashboardState>(
     'emit loading then error',
     build: () {
-      when(mockGetAllReservationUseCase()).thenAnswer(
+      when(() => mockGetAllReservationUseCase()) 
+          .thenAnswer(
         (_) async => ApiResult.error(
           const ApiErrorModel(
             message: 'Exception: Failed to fetch data',
@@ -66,7 +67,6 @@ void main() {
           ),
         ),
       );
-
       return ManagerDashboardCubit(
         getAllReservationUseCase: mockGetAllReservationUseCase,
       );
